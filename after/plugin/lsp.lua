@@ -20,7 +20,15 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<CR>'] = cmp.mapping.confirm({ select = true }),
   ["<C-Space>"] = cmp.mapping.complete(),
 })
-
+cmp.setup({
+  sources = {
+    { name = "copilot", group_index = 2 },
+    {name = 'path'},
+    {name = 'nvim_lsp'},
+    {name = 'buffer', keyword_length = 3},
+    {name = 'luasnip', keyword_length = 2},
+  }
+})
 --cmp_mappings['<Tab>'] = nil
 --cmp_mappings['<S-Tab>'] = nil
 

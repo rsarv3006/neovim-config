@@ -46,7 +46,6 @@ return require('packer').startup(function(use)
     }
 
     use('github/copilot.vim')
-
     use({
         "nvim-neotest/neotest",
         requires = {
@@ -86,4 +85,7 @@ return require('packer').startup(function(use)
             })
         end,
     })
+
+    use('prettier/vim-prettier')
+
 end)
