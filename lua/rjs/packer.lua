@@ -145,6 +145,7 @@ return require('packer').startup(function(use)
     end
   }
 
+  use('APZelos/blamer.nvim')
 
   use('jremmen/vim-ripgrep')
 end)

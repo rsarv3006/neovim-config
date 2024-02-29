@@ -70,3 +70,5 @@ vim.keymap.set("n", "<leader>ws", "<C-W>s")
 vim.keymap.set("n", "gb", "<C-O>")
 
 vim.keymap.set('n', '<Leader>ff', '<Plug>(prettier-format)', {})
+
+vim.keymap.set("n", "<leader>bt", "<cmd>BlamerToggle<CR>")
