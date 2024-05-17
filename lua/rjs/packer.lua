@@ -78,7 +78,6 @@ return require('packer').startup(function(use)
     }
   }
 
-  use('github/copilot.vim')
   use({
     "nvim-neotest/neotest",
     requires = {
@@ -120,24 +119,15 @@ return require('packer').startup(function(use)
     end,
   })
 
-  use('prettier/vim-prettier')
+  use('github/copilot.vim')
 
-  use {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-    }
-  }
+  use('prettier/vim-prettier')
 
   use('tpope/vim-commentary')
 
-
   use {
     "rest-nvim/rest.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
+    requires = { "nvim-lua/plenary.nvim", "vhyrro/luarocks.nvim" },
     config = function()
       require("rest-nvim").setup({
         -- Open request results in a horizontal split
