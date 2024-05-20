@@ -38,16 +38,13 @@ vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
+-- replace in file
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>");
-vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 vim.keymap.set("n", "<leader><leader>", function()
   vim.cmd("so")
 end)
-
 
 -- Remap window controls off the ctrl key
 vim.keymap.set("n", "<leader>wh", "<C-W>h")
@@ -90,7 +87,18 @@ vim.keymap.set("n", "<leader>xq", "<cmd>Telescope quickfix<cr>", { desc = "Show 
 vim.keymap.set("n", "<leader>xg", "<cmd>call jobstart('tuist generate --no-open')<cr>", { desc = "Generate Project" })
 vim.keymap.set("n", "<leader>xte", "<cmd>call jobstart('tuist edit')<cr>", { desc = "Generate Project" })
 
+-- Regenerate tuist and build
 vim.keymap.set('n', '<leader>xrr', function()
-  vim.cmd("call jobstart('tuist generate')")
+  vim.cmd("call jobstart('tuist generate --no-open')")
   vim.cmd('XcodebuildBuild')
+end, { noremap = true })
+
+-- Copilot SHUT UP
+vim.keymap.set('n', '<leader>cs', function()
+  vim.cmd('Copilot disable')
+end, { noremap = true })
+
+-- Copilot HALP
+vim.keymap.set('n', '<leader>ch', function()
+  vim.cmd('Copilot enable')
 end, { noremap = true })
