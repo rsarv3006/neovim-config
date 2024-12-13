@@ -93,6 +93,20 @@ return require('packer').startup(function(use)
 
   use('github/copilot.vim')
 
+  use {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    requires = {
+      'github/copilot.vim',
+      'nvim-lua/plenary.nvim',
+    },
+    run = ':CopilotChatInstall',
+    config = function()
+      require('CopilotChat').setup({
+        -- Add any specific configuration here
+      })
+    end
+  }
+
   use('prettier/vim-prettier')
 
   use('tpope/vim-commentary')
