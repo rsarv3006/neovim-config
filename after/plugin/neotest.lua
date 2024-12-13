@@ -3,6 +3,7 @@ require("neotest").setup({
   adapters = {
     require("neotest-python"),
     require("neotest-go"),
+    require("neotest-dotnet"),
     require('neotest-jest')({
       jestcommand = "npm test --",
       jestconfigfile = "custom.jest.config.ts",
