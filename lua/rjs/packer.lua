@@ -11,6 +11,7 @@ return require('packer').startup(function(use)
   }
 
   use "folke/tokyonight.nvim"
+  use 'navarasu/onedark.nvim'
 
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 
@@ -214,4 +215,22 @@ return require('packer').startup(function(use)
       require("rest-nvim").setup()
     end,
   }
+
+-- use {
+--   'rest-nvim/rest.nvim',
+--   requires = {
+--     {
+--       'nvim-treesitter/nvim-treesitter',
+--       config = function()
+--         local ts_config = require('nvim-treesitter.configs')
+--         local config = ts_config.get_module('ensure_installed') or {}
+--         table.insert(config, "http")
+--         ts_config.setup({
+--           ensure_installed = config
+--         })
+--       end
+--     }
+--   }
+-- }
+
 end)
