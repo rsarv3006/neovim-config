@@ -35,6 +35,16 @@ return {
                   or util.root_pattern("Package.swift")(filename)
             end,
           })
+
+          lspconfig["zls"].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            cmd = { vim.fn.expand("~/.local/share/nvim/mason/bin/zls") },
+            root_dir = function(fname)
+              return util.root_pattern('build.zig')(fname)
+                  or util.find_git_ancestor(fname)
+            end,
+          })
         end
       }, -- Required
       {  -- Optional
@@ -55,10 +65,6 @@ return {
 
       lsp.preset("recommended")
 
-      lsp.ensure_installed({
-        'tsserver',
-      })
-
       -- Fix Undefined global 'vim'
       lsp.nvim_workspace()
 
@@ -72,13 +78,28 @@ return {
       })
       cmp.setup({
         sources = {
-          { name = "copilot", group_index = 2 },
+          { name = "copilot",      group_index = 2 },
+          { name = "vim-tabby" },
+          { name = 'codecompanion' },
           { name = 'path' },
           { name = 'nvim_lsp' },
-          { name = 'buffer',  keyword_length = 3 },
-          { name = 'luasnip', keyword_length = 2 },
+          { name = 'buffer',       keyword_length = 3 },
+          { name = 'luasnip',      keyword_length = 2 },
         }
       })
+
+      cmp.setup.filetype({
+          "sql",
+        },
+        {
+          sources = {
+            { name = "vim-dadbod-completion" },
+            { name = "copilot",              group_index = 2 },
+            { name = "nvim_lsp" },
+            { name = "buffer" },
+          },
+        })
+
       --cmp_mappings['<Tab>'] = nil
       --cmp_mappings['<S-Tab>'] = nil
 
