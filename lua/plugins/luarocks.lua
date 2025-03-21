@@ -1,5 +1,0 @@
-return {
-  {
-    "vhyrro/luarocks"
-  }
-}
