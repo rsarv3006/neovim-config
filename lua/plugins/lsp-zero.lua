@@ -7,6 +7,14 @@ return {
       {
         'neovim/nvim-lspconfig',
         config = function()
+          require("neoconf").setup()
+
+          require('java').setup({
+            jdk = {
+              auto_install = false,
+            },
+          })
+
           local lspconfig = require("lspconfig")
           local util = require("lspconfig.util")
           local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -21,6 +29,8 @@ return {
             opts.desc = "Show documentation for what is under cursor"
             vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
           end
+
+          lspconfig['jdtls'].setup({})
 
           lspconfig["sourcekit"].setup({
             capabilities = capabilities,
