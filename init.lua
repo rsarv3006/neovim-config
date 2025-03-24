@@ -185,7 +185,8 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  -- 'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  -- ^^ damn thing was wreaking havoc in .java files
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -888,3 +889,19 @@ require('lazy').setup({
 --     autocmd FileType java lua require'jdtls.jdtls_setup'.setup()
 -- augroup end
 -- ]]
+
+vim.api.nvim_create_augroup('jdtls_lsp', { clear = true })
+
+-- Set up the autocommand to attach the LSP client to every Java file
+vim.api.nvim_create_autocmd('FileType', {
+  group = 'jdtls_lsp',
+  pattern = 'java',
+  callback = function()
+    require('custom.plugins.jdtls_setup').setup()
+  end,
+})
+
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true

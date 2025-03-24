@@ -1,0 +1,45 @@
+{
+  "name": "Neovim Config Workspace",
+  "version": "1.0.0",
+  "system_prompt": "You are an assistant helping with a Neovim configuration project.",
+  "groups": [
+    {
+      "name": "Neovim Configuration",
+      "system_prompt": "This group contains all the key files for the Neovim configuration.",
+      "data": [
+        "init_lua",
+        "neoconf_json",
+        "swiftformat",
+        "stylua_toml",
+        "lua_folder"
+      ]
+    }
+  ],
+  "data": {
+    "init_lua": {
+      "type": "file",
+      "path": "init.lua",
+      "description": "Main Neovim configuration file."
+    },
+    "neoconf_json": {
+      "type": "file",
+      "path": "neoconf.json",
+      "description": "Neoconf configuration file."
+    },
+    "swiftformat": {
+      "type": "file",
+      "path": ".swiftformat",
+      "description": "Swiftformat configuration file."
+    },
+    "stylua_toml": {
+      "type": "file",
+      "path": ".stylua.toml",
+      "description": "Stylua configuration file."
+    },
+    "lua_folder": {
+      "type": "file",
+      "path": "lua/",
+      "description": "Directory containing Lua configuration files."
+    }
+  }
+}
