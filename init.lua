@@ -858,6 +858,14 @@ require('lazy').setup({
   -- Or use telescope!
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
+
+  {
+    'mfussenegger/nvim-jdtls',
+    ft = { 'java' },
+    config = function()
+      require('custom.function.jdtls_setup').setup()
+    end,
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -897,7 +905,7 @@ vim.api.nvim_create_autocmd('FileType', {
   group = 'jdtls_lsp',
   pattern = 'java',
   callback = function()
-    require('custom.plugins.jdtls_setup').setup()
+    require('custom.function.jdtls_setup').setup()
   end,
 })
 
