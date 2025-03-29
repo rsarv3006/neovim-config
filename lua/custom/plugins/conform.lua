@@ -86,6 +86,17 @@ return {
         formatters_by_ft = {
           lua = { 'stylua' },
           swift = { 'swiftformat_ext' },
+          javascript = { 'prettier' },
+          typescript = { 'prettier' },
+          javascriptreact = { 'prettier' },
+          typescriptreact = { 'prettier' },
+          html = { 'prettier' },
+          css = { 'prettier' },
+          scss = { 'prettier' },
+          json = { 'prettier' },
+          yaml = { 'prettier' },
+          markdown = { 'prettier' },
+          java = { 'jdtls' }, -- Use JDTLS formatter
         },
         formatters = {
           swiftformat_ext = {
@@ -95,7 +106,6 @@ return {
               local filepath = ctx.filename
               if not filepath or filepath == '' then
                 filepath = vim.api.nvim_buf_get_name(0)
-                vim.notify('Using buffer name: ' .. filepath, vim.log.levels.INFO)
               end
 
               return {
@@ -125,7 +135,6 @@ return {
             stdin = true,
             condition = function(ctx)
               local filetype = vim.bo.filetype
-              vim.notify('Checking format for filetype: ' .. filetype, vim.log.levels.INFO)
 
               -- Skip README files and only format .swift files
               local filename = ctx.filename
@@ -141,6 +150,27 @@ return {
 
               return is_swift and not is_readme and has_swiftformat
             end,
+          },
+          prettier = {
+            -- Use project-local prettier
+            command = function()
+              -- Check for local prettier in node_modules
+              local local_prettier = vim.fn.findfile('node_modules/.bin/prettier', '.;')
+              if local_prettier ~= '' then
+                return local_prettier
+              end
+
+              -- Fallback to global prettier if available
+              if vim.fn.executable 'prettier' == 1 then
+                return 'prettier'
+              end
+
+              -- Return nil or false if prettier isn't available
+              return nil
+            end,
+            -- Standard prettier args
+            args = { '--stdin-filepath', '$FILENAME' },
+            stdin = true,
           },
         },
       }

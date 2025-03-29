@@ -28,6 +28,7 @@ M.setup = function()
 
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+
   local config = {
     cmd = {
       '/opt/homebrew/Cellar/openjdk/23.0.2/bin/java',
@@ -52,7 +53,14 @@ M.setup = function()
     },
     root_dir = require('jdtls.setup').find_root { '.git', 'mvnw', 'gradlew' },
     settings = {
-      java = {},
+      java = {
+        format = {
+          settings = {
+            url = vim.fn.expand '~/.config/nvim/java-formatter-settings.xml',
+            profile = 'MyCustomProfile',
+          },
+        },
+      },
     },
     init_options = {
       bundles = {},
