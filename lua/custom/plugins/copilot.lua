@@ -29,6 +29,30 @@ return {
     },
     config = function()
       require('codecompanion').setup {
+        adapters = {
+          lmstudio = function()
+            return require('codecompanion.adapters').extend('openai_compatible', {
+              env = {
+                api_key = 'not-needed',
+                url = 'http://localhost:1234',
+              },
+              schema = {
+                model = {
+                  default = 'openai/gpt-oss-20b',
+                  choices = {
+                    'openai/gpt-oss-20b',
+                    'qwen2.5-coder-7b-instruct',
+                  },
+                },
+              },
+            })
+          end,
+        },
+        strategies = {
+          chat = {
+            adapter = 'lmstudio',
+          },
+        },
         display = {
           action_palette = {
             provider = 'telescope', -- or "mini_pick" or "vim.ui.select"
