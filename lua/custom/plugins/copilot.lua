@@ -30,23 +30,42 @@ return {
     config = function()
       require('codecompanion').setup {
         adapters = {
-          lmstudio = function()
-            return require('codecompanion.adapters').extend('openai_compatible', {
-              env = {
-                api_key = 'not-needed',
-                url = 'http://localhost:1234',
-              },
-              schema = {
-                model = {
-                  default = 'openai/gpt-oss-20b',
-                  choices = {
-                    'openai/gpt-oss-20b',
-                    'qwen2.5-coder-7b-instruct',
+          http = {
+            bigbox = function()
+              return require('codecompanion.adapters').extend('openai_compatible', {
+                env = {
+                  api_key = 'not-needed',
+                  url = 'http://10.0.0.7:11434',
+                },
+                schema = {
+                  model = {
+                    default = 'qwen3-coder:30b',
+                    choices = {
+                      'llama3.1:70b-instruct-q3_K_S',
+                      'qwen3-coder:30b',
+                      'gpt-oss:20b',
+                    },
                   },
                 },
-              },
-            })
-          end,
+              })
+            end,
+            lmstudio = function()
+              return require('codecompanion.adapters').extend('openai_compatible', {
+                env = {
+                  api_key = 'not-needed',
+                  url = 'http://localhost:1234',
+                },
+                schema = {
+                  model = {
+                    default = 'openai/gpt-oss-20b',
+                    choices = {
+                      'openai/gpt-oss-20b',
+                    },
+                  },
+                },
+              })
+            end,
+          },
         },
         strategies = {
           chat = {
