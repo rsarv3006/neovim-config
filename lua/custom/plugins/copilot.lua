@@ -41,25 +41,12 @@ return {
                   model = {
                     default = 'qwen3-coder:30b',
                     choices = {
+                      'qwen3-coder-8k:latest',
+                      'qwen3-coder-12k:latest',
+                      'qwen3-coder-16k:latest',
                       'llama3.1:70b-instruct-q3_K_S',
                       'qwen3-coder:30b',
                       'gpt-oss:20b',
-                    },
-                  },
-                },
-              })
-            end,
-            lmstudio = function()
-              return require('codecompanion.adapters').extend('openai_compatible', {
-                env = {
-                  api_key = 'not-needed',
-                  url = 'http://localhost:1234',
-                },
-                schema = {
-                  model = {
-                    default = 'openai/gpt-oss-20b',
-                    choices = {
-                      'openai/gpt-oss-20b',
                     },
                   },
                 },
@@ -69,7 +56,7 @@ return {
         },
         strategies = {
           chat = {
-            adapter = 'lmstudio',
+            adapter = 'bigbox',
           },
         },
         display = {
