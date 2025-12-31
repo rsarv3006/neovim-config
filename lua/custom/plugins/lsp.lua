@@ -258,6 +258,12 @@ return {
           end,
         }
       end
+
+      -- Manually set up dartls (comes with Dart SDK, not available via Mason)
+      require('lspconfig').dartls.setup {
+        capabilities = capabilities,
+        cmd = { 'dart', 'language-server', '--protocol=lsp' },
+      }
     end,
   },
   {
