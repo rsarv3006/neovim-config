@@ -39,12 +39,11 @@ return {
                 },
                 schema = {
                   model = {
-                    default = 'qwen3-coder:30b',
+                    default = 'qwen3-coder-16k:latest',
                     choices = {
-                      'qwen3-coder-8k:latest',
-                      'qwen3-coder-12k:latest',
+                      'olmo-3.1:32b-instruct-16k',
+                      'devstral-small-2:24b-16k',
                       'qwen3-coder-16k:latest',
-                      'llama3.1:70b-instruct-q3_K_S',
                       'qwen3-coder:30b',
                       'gpt-oss:20b',
                     },
