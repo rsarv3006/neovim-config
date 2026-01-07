@@ -178,8 +178,6 @@ return {
       -- Debug info
       if has_swiftformat then
         vim.notify('SwiftFormat found at: ' .. vim.fn.exepath 'swiftformat', vim.log.levels.INFO)
-      else
-        vim.notify('SwiftFormat NOT found - please install it', vim.log.levels.ERROR)
       end
 
       -- Add a command to debug Swift formatting
