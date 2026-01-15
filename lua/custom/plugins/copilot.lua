@@ -39,13 +39,14 @@ return {
                 },
                 schema = {
                   model = {
-                    default = 'qwen3-coder-16k:latest',
+                    default = 'gpt-oss-65k',
                     choices = {
-                      'olmo-3.1:32b-instruct-16k',
+                      'nemotron-16k',
                       'devstral-small-2:24b-16k',
                       'qwen3-coder-16k:latest',
                       'qwen3-coder:30b',
-                      'gpt-oss:20b',
+                      'gpt-oss-23k',
+                      'gpt-oss-65k',
                     },
                   },
                 },
