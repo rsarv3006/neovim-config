@@ -35,7 +35,7 @@ return {
               return require('codecompanion.adapters').extend('openai_compatible', {
                 env = {
                   api_key = 'not-needed',
-                  url = 'http://10.0.0.7:11434',
+                  url = 'http://10.0.0.39:11434',
                 },
                 schema = {
                   model = {
