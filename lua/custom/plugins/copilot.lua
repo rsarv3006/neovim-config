@@ -41,12 +41,9 @@ return {
                   model = {
                     default = 'gpt-oss-65k',
                     choices = {
-                      'nemotron-16k',
-                      'devstral-small-2:24b-16k',
-                      'qwen3-coder-16k:latest',
-                      'qwen3-coder:30b',
-                      'gpt-oss-23k',
                       'gpt-oss-65k',
+                      'qwen3.5:9b-65k',
+                      'lfm2-65k:latest',
                     },
                   },
                 },
@@ -67,16 +64,4 @@ return {
       }
     end,
   },
-  -- {
-  --   "TabbyML/vim-tabby",
-  --   lazy = false,
-  --   dependencies = {
-  --     "neovim/nvim-lspconfig",
-  --   },
-  --   init = function()
-  --     vim.g.tabby_agent_start_command = { "npx", "tabby-agent", "--stdio" }
-  --     vim.g.tabby_inline_completion_trigger = "auto"
-  --     vim.g.tabby_inline_completion_keybinding_accept = "<S-Tab>"
-  --   end,
-  -- },
 }
