@@ -5,8 +5,13 @@ return {
   keys = {
     {
       '<leader>gs',
-      vim.cmd.Git,
-      desc = 'Fugitive Git',
+      function()
+        vim.cmd 'vertical Git'
+      end,
+      desc = 'Fugitive Git (vertical)',
     },
   },
+  config = function()
+    vim.g.fugitive_split_command = 'vsplit'
+  end,
 }
