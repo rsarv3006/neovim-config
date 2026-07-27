@@ -15,6 +15,7 @@ return {
   },
   {
     'olimorris/codecompanion.nvim',
+    dir = '/home/rjs/dev/codecompanion.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
@@ -29,6 +30,16 @@ return {
     },
     config = function()
       require('codecompanion').setup {
+        auto_mode = {
+          enabled = true,
+          primary_adapter = 'bigbox',
+          fast_adapter = 'bigbox',
+          fast_model = 'gemma4:12b',
+          rules = {
+            max_tokens_for_fast = 16000, -- tune to your fast model's context
+          },
+        },
+
         rules = {
           default = {
             description = 'Collection of common files for all projects',
@@ -65,8 +76,9 @@ return {
                 },
                 schema = {
                   model = {
-                    default = 'gemma4:e4b-65k',
+                    default = 'hf.co/unsloth/Qwen3.6-27B-MTP-GGUF:Q3_K_M',
                     choices = {
+                      'hf.co/unsloth/Qwen3.6-27B-MTP-GGUF:Q3_K_M',
                       'gpt-oss-65k',
                       'qwen3.5:9b-65k',
                       'gemma4:e4b-65k',
@@ -84,9 +96,28 @@ return {
                 },
                 schema = {
                   model = {
-                    default = 'gemma4:e4b',
+                    default = 'gemma4:12b',
                     choices = {
                       'gemma4:e4b',
+                      'granite4.1:30b-q3_K_S',
+                      'gemma4:12b',
+                    },
+                  },
+                },
+              })
+            end,
+            llama_cpp = function()
+              return require('codecompanion.adapters').extend('openai_compatible', {
+                env = {
+                  api_key = 'not-needed',
+                  url = 'http://10.0.0.39:8082',
+                },
+                schema = {
+                  model = {
+                    default = 'unsloth/Qwen3.6-27B-MTP-GGUF:Q3_K_M',
+                    choices = {
+                      'unsloth/Qwen3.6-27B-MTP-GGUF:Q3_K_M',
+                      'unsloth/Nemotron-3-Nano-30B-A3B-Q3_K_S',
                     },
                   },
                 },
@@ -106,6 +137,22 @@ return {
           action_palette = {
             provider = 'telescope', -- or "mini_pick" or "vim.ui.select"
           },
+        },
+      }
+    end,
+  },
+  {
+    dir = '~/dev/ai-scalpel.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('ai-scalpel').setup {
+        api = {
+          base_url = 'http://10.0.0.39:8082/v1',
+          model = 'unsloth/Qwen3.6-27B-MTP-GGUF:Q3_K_M',
+        },
+        context = {
+          auto_discover = true,
+          max_discovered = 5,
         },
       }
     end,

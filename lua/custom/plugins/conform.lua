@@ -96,7 +96,6 @@ return {
           json = { 'prettier' },
           yaml = { 'prettier' },
           markdown = { 'prettier' },
-          java = { 'jdtls' }, -- Use JDTLS formatter
         },
         formatters = {
           swiftformat_ext = {

@@ -546,13 +546,16 @@ require('lazy').setup({
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
 
-  {
-    'mfussenegger/nvim-jdtls',
-    ft = { 'java' },
-    config = function()
-      require('custom.function.jdtls_setup').setup()
-    end,
-  },
+  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
+  --    This is the easiest way to modularize your config.
+  --
+  --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
+  { import = 'custom.plugins' },
+  --
+  -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
+  -- Or use telescope!
+  -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
+  -- you can continue same window with `<space>sr` which resumes last telescope search
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -578,25 +581,9 @@ require('lazy').setup({
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 
--- vim.cmd [[
--- augroup jdtls_lsp
---     autocmd!
---     autocmd FileType java lua require'jdtls.jdtls_setup'.setup()
--- augroup end
--- ]]
-
-vim.api.nvim_create_augroup('jdtls_lsp', { clear = true })
-
--- Set up the autocommand to attach the LSP client to every Java file
-vim.api.nvim_create_autocmd('FileType', {
-  group = 'jdtls_lsp',
-  pattern = 'java',
-  callback = function()
-    require('custom.function.jdtls_setup').setup()
-  end,
-})
-
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
+
+vim.keymap.set('n', '<leader>asg', ':ScalpelGenerate<CR>', { desc = 'Scalpel: Generate code' })

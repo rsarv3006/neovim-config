@@ -14,7 +14,6 @@ return {
       { 'williamboman/mason.nvim', opts = {} },
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-      { 'folke/neoconf.nvim', opts = {} },
       { 'j-hui/fidget.nvim', opts = {} },
       'hrsh7th/cmp-nvim-lsp',
     },
@@ -121,24 +120,6 @@ return {
         root_markers = { 'build.zig', '.git' },
       })
 
-      vim.lsp.config('jdtls', {
-        capabilities = capabilities,
-        settings = {
-          java = {
-            configuration = {
-              runtimes = {
-                {
-                  name = 'JavaSE-21',
-                  path = '/opt/homebrew/opt/openjdk@21',
-                  default = true,
-                },
-              },
-            },
-          },
-        },
-      })
-
-      vim.lsp.enable 'jdtls'
       vim.lsp.config('dartls', {
         capabilities = capabilities,
         cmd = { 'dart', 'language-server', '--protocol=lsp' },
@@ -156,7 +137,7 @@ return {
       end
       -- ────────────────────────────────────────────────────────────────────
 
-      local ensure_installed = { 'lua_ls', 'zls', 'jdtls', 'stylua', 'prettier' }
+      local ensure_installed = { 'lua_ls', 'zls', 'stylua', 'prettier' }
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
